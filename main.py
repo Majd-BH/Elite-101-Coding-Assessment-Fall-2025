@@ -208,6 +208,12 @@ class Book:  # This is the class it's called Book and it calls all our functions
         }
         self.library_books.append(new_book)
         print(f"Book '{title}' added successfully.")
+    def Top3Books(self):
+        print("Here are the libraries top 3 viewed books:")
+        self.library_books.sort(key=lambda b: b["checkouts"], reverse=True)
+        for book in self.library_books[:3]:
+            print(book["title"], book["author"], book["checkouts"])
+
 
     def menu(self):  
         while True:
@@ -218,6 +224,7 @@ class Book:  # This is the class it's called Book and it calls all our functions
             print("4) Return a book")
             print("5) List overdue books")
             print("6) Add a book to the library")
+            print("7) View top 3 most checked-out books")
             print("0) Quit")
 
             choice = input("Choose an option: ").strip()
@@ -233,6 +240,8 @@ class Book:  # This is the class it's called Book and it calls all our functions
                 self.OB()
             elif choice == "6":
                 self.AddBook()
+            elif choice == "7":
+                self.Top3Books()
             elif choice in ("0",):
                 print("Goodbye!")
                 break
